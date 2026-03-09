@@ -48,6 +48,20 @@
           </section>
         </div>
 
+        <!-- entropy -->
+        <div class="space-y-3">
+          <Progress :model-value="57" />
+          <h2 class="text-sm text-muted-foreground">Entropy: <span class="text-white font-bold">SECURE</span></h2>
+        </div>
+
+        <div class="space-y-3">
+          <section class="flex items-end gap-4 justify-between w-full">
+            <h2 class="text-sm text-muted-foreground">No. of Characters</h2>
+            <h1 class="text-2xl font-bold">33</h1>
+          </section>
+          <Slider :default-value="[33]" :max="100" :step="1" />
+        </div>
+
         <!-- options -->
         <div class="space-y-2">
           <h2 class="text-sm text-muted-foreground">Options</h2>
@@ -74,8 +88,7 @@
         </div>
 
         <div class="w-full flex items-center justify-center">
-          <button @click="resetDefault" type="button"
-            class="text-muted-foreground w-fit cursor-pointer">
+          <button @click="resetDefault" type="button" class="text-muted-foreground w-fit cursor-pointer">
             <p>Reset to default</p>
           </button>
         </div>
@@ -90,7 +103,8 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-// import { Label } from '@/components/ui/label'
+import { Progress } from '@/components/ui/progress'
+import { Slider } from '@/components/ui/slider'
 import { ClipboardCopy, EyeOff, RefreshCcw } from 'lucide-vue-next';
 
 
