@@ -21,22 +21,22 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 
 <template>
   <label
-    class="flex items-center justify-between rounded-xl bg-[#0a0a0a] px-5 py-5 text-muted-foreground transition-all duration-200 hover:cursor-pointer group">
-    <span class="text-xs md:text-sm font-normal">
+    class="group flex items-center justify-between rounded-xl bg-[#0a0a0a] px-5 py-5 text-muted-foreground transition-all duration-200 hover:cursor-pointer">
+    <span class="text-xs font-normal md:text-sm">
       {{ label }}
     </span>
 
     <CheckboxRoot v-slot="slotProps" data-slot="checkbox" v-bind="forwarded" :class="cn(
-      'group-hover:cursor-pointer peer size-5 shrink-0 rounded-[6px] border border-white/10 bg-white/15 outline-none transition-all duration-200',
-      'data-[state=checked]:border-[#00d200] data-[state=checked]:bg-[#00d200]! data-[state=checked]:text-black',
+      'peer size-5 shrink-0 rounded-[6px] border border-white/10 bg-white/15 outline-none transition-all duration-200',
+      'data-[state=checked]:border-[#00d200]! data-[state=checked]:bg-[#00d200]! data-[state=checked]:text-black',
       'focus-visible:ring-2 focus-visible:ring-[#00d200]/40!',
       'disabled:cursor-not-allowed disabled:opacity-50',
-      props.class
+      props.class,
     )
       ">
       <CheckboxIndicator data-slot="checkbox-indicator" class="grid h-full w-full place-content-center">
         <slot v-bind="slotProps">
-          <!-- <Check class="size-4" /> -->
+          <Check class="size-4 text-black" />
         </slot>
       </CheckboxIndicator>
     </CheckboxRoot>
