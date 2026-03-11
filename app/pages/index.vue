@@ -1,10 +1,10 @@
 <template>
   <main class="h-full min-h-screen flex items-center justify-center w-full px-4 py-10">
-    <div class="space-y-10 w-full">
+    <div class="space-y-8 w-full">
 
       <!-- app name -->
       <section class="flex flex-col items-center gap-2">
-        <Skeleton class="w-25 h-25 rounded-full bg-white/10" />
+        <!-- <Skeleton class="w-25 h-25 rounded-full bg-white/10" /> -->
         <h1 class="font-primary text-5xl font-bold">Pazz</h1>
         <p class="text-xl text-muted-foreground">
           Random Password Generator
@@ -28,14 +28,20 @@
 
           <!-- generated password -->
           <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center">
-            <p class="wrap-break-word select-text text-2xl">{{ password }}</p>
+            <p :class="[
+              'wrap-break-word select-text text-2xl transition-all duration-300',
+              !isPasswordVisible && password !== DEFAULT_PASSWORD ? 'blur-xs select-none!' : 'blur-0'
+            ]">
+              {{ password }}
+            </p>
           </section>
 
           <!-- buttons -->
           <section class="flex items-center justify-center w-full gap-3">
             <button @click="togglePassword" type="button"
               class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer">
-              <EyeOff class="size-6 pointer-events-none" />
+              <EyeOff v-if="isPasswordVisible" class="size-6 pointer-events-none" />
+              <Eye v-else class="size-6 pointer-events-none" />
             </button>
             <button @click="generatePassword" type="button"
               class="bg-[#00d200] p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
@@ -67,7 +73,7 @@
         <!-- options -->
         <div class="space-y-2">
           <h2 class="text-sm text-muted-foreground">Options</h2>
-          <div class="grid grid-cols-2 gap-3">
+          <div class="grid md:grid-cols-2 grid-cols-1 gap-3">
             <Checkbox v-model="uppercase" label="Uppercase Letters (A-Z)" />
             <Checkbox v-model="lowercase" label="Lowercase Letters (a-z)" />
             <Checkbox v-model="numbers" label="Numbers (0-9)" />
@@ -76,7 +82,7 @@
         </div>
 
         <!-- buttons -->
-        <div class="flex items-center justify-center w-full gap-3">
+        <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
           <button @click="generatePassword" type="button"
             class="bg-[#00d200] p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
             <RefreshCcw class="size-6 pointer-events-none" />
@@ -90,9 +96,23 @@
         </div>
 
         <div class="w-full flex items-center justify-center">
-          <button @click="resetDefault" type="button" class="text-muted-foreground w-fit cursor-pointer">
-            <p>Reset to default</p>
+          <button @click="resetDefault" type="button" class="w-fit cursor-pointer">
+            <p class="text-muted-foreground hover:text-white transition duration-150 ease-in">Reset to default</p>
           </button>
+        </div>
+      </section>
+
+      <section class="mt-20">
+        <div class="flex items-center justify-center gap-1 w-full md:text-xs text-[.6rem] text-white/30">
+          <p>Powered by</p>
+
+          <a href="https://kinwebb.netlify.app/" target="_blank" rel="noopener noreferrer"
+            class="text-white/60 hover:text-white! ease-in transition-all duration-200 group relative inline-block">
+            KinWebb
+
+            <img src="/images/model.png" alt="kinwebb"
+              class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 size-8 opacity-0 translate-y-2 scale-75 transition-all duration-300 ease-in pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100" />
+          </a>
         </div>
       </section>
 
@@ -106,7 +126,7 @@ import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Slider } from '@/components/ui/slider'
-import { ClipboardCopy, EyeOff, RefreshCcw } from 'lucide-vue-next';
+import { ClipboardCopy, Eye, EyeOff, RefreshCcw } from 'lucide-vue-next'
 
 const MAX_PASSWORD_LENGTH = 64
 const MIN_PASSWORD_LENGTH = 4
@@ -114,6 +134,7 @@ const DEFAULT_PASSWORD = '-'
 const ENTROPY = ['LOW', 'MODERATE', 'SECURE', 'EXTREME'] // low = 0-7, moderate = 8-15, secure = 16-33, extreme = 34+
 const TAG = ['VULNERABLE', 'STANDARD', 'FORTIFIED', 'MILITARY GRADE'] // low = 0-7, standard = 8-15, fortified = 16-33, military grade = 34+
 
+const isPasswordVisible = ref(true)
 const uppercase = ref(true)
 const lowercase = ref(true)
 const numbers = ref(true)
@@ -180,7 +201,7 @@ function generatePassword() {
 }
 
 function togglePassword() {
-  console.log('toggling password visibility')
+  isPasswordVisible.value = !isPasswordVisible.value
 }
 
 function resetDefault() {
