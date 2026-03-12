@@ -127,6 +127,7 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Progress } from '@/components/ui/progress'
 import { Slider } from '@/components/ui/slider'
 import { ClipboardCopy, Eye, EyeOff, RefreshCcw } from 'lucide-vue-next'
+import { toast } from 'vue-sonner'
 
 const MAX_PASSWORD_LENGTH = 64
 const MIN_PASSWORD_LENGTH = 4
@@ -164,9 +165,15 @@ async function copyClipboard() {
 
   try {
     await navigator.clipboard.writeText(password.value)
-    console.log("Password copied to clipboard")
+    toast('Password copied!', {
+      description: password.value,
+    })
+    // console.log("Password copied to clipboard")
   } catch (error) {
-    console.error("Failed to copy password:", error)
+    toast.warning('Failed to copy password!', {
+      description: 'Please try copying manually.',
+    })
+    // console.error("Failed to copy password:", error)
   }
 }
 
