@@ -102,20 +102,6 @@
         </div>
       </section>
 
-      <section class="mt-20">
-        <div class="flex items-center justify-center gap-1 w-full md:text-xs text-[.6rem] text-white/30">
-          <p>Powered by</p>
-
-          <a href="https://kinwebb.netlify.app/" target="_blank" rel="noopener noreferrer"
-            class="text-white/60 hover:text-white! ease-in transition-all duration-200 group relative inline-block">
-            KinWebb
-
-            <img src="/images/model.png" alt="kinwebb"
-              class="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 size-8 opacity-0 translate-y-2 scale-75 transition-all duration-300 ease-in pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100" />
-          </a>
-        </div>
-      </section>
-
     </div>
   </main>
 </template>
