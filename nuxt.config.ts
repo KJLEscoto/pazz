@@ -5,7 +5,7 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   css: ['./app/assets/css/main.css'],
-  modules: ['shadcn-nuxt', '@nuxt/fonts'],
+  modules: ['shadcn-nuxt', '@nuxt/fonts', 'kinwebb-attribute'],
   vite: {
     plugins: [
       tailwindcss(),
