@@ -66,7 +66,7 @@ export default defineNuxtConfig({
           content:
             "A lightweight random password generator that creates strong, customizable passwords in seconds—helping you stay secure with less effort.",
         },
-        // { property: "og:image", content: "/images/meta_thumbnail.png" },
+        { property: "og:image", content: "https://kinwebb.netlify.app/pazz_thumbnail.png" },
         { property: "og:image:width", content: "1200" },
         { property: "og:image:height", content: "630" },
         { property: "og:image:type", content: "image/png" },
@@ -79,7 +79,7 @@ export default defineNuxtConfig({
           content:
             "A lightweight random password generator that creates strong, customizable passwords in seconds—helping you stay secure with less effort.",
         },
-        { name: "twitter:image", content: "/images/meta_thumbnail.png" },
+        { name: "twitter:image", content: "https://kinwebb.netlify.app/pazz_thumbnail.png" },
       ],
       link: [{ rel: "icon", type: "image/png", href: "/images/Icon.png" }],
     },
