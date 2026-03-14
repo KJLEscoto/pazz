@@ -18,13 +18,7 @@
         <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-4xl w-full space-y-6">
 
           <!-- status -->
-          <section class="flex items-center justify-between w-full gap-4">
-            <Badge variant="default" class="text-xs font-bold">{{ currentTag }}</Badge>
-            <div class="flex items-center gap-2 text-muted-foreground">
-              <Skeleton class="size-2 rounded-full bg-[#00d200]" />
-              Encrypted
-            </div>
-          </section>
+          <Status :entropy-progress="entropyProgress" :current-tag="currentTag" />
 
           <!-- generated password -->
           <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center">
@@ -44,7 +38,7 @@
               <Eye v-else class="size-6 pointer-events-none" />
             </button>
             <button @click="generatePassword" type="button"
-              class="bg-[#00d200] p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
+              class="bg-white p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
               <RefreshCcw class="size-6 pointer-events-none text-black mx-auto" />
             </button>
             <button @click="copyClipboard" type="button"
@@ -55,12 +49,7 @@
         </div>
 
         <!-- entropy -->
-        <div class="space-y-3">
-          <Progress :model-value="entropyProgress" />
-          <h2 class="text-sm text-muted-foreground">
-            Entropy: <span class="text-white font-bold">{{ currentEntropy }}</span>
-          </h2>
-        </div>
+        <Entropy :entropy-progress="entropyProgress" :current-entropy="currentEntropy" />
 
         <div class="space-y-3">
           <section class="flex items-end gap-4 justify-between w-full">
@@ -84,7 +73,7 @@
         <!-- buttons -->
         <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
           <button @click="generatePassword" type="button"
-            class="bg-[#00d200] p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
+            class="bg-white p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
             <RefreshCcw class="size-6 pointer-events-none" />
             <p>Regenerate New Keys</p>
           </button>
@@ -97,7 +86,7 @@
 
         <div class="w-full flex items-center justify-center">
           <button @click="resetDefault" type="button" class="w-fit cursor-pointer">
-            <p class="text-muted-foreground hover:text-white transition duration-150 ease-in">Reset to default</p>
+            <p class="text-muted-foreground hover:text-white transition duration-150 ease-in">Reset to Default</p>
           </button>
         </div>
       </section>
@@ -107,10 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import { Skeleton } from '@/components/ui/skeleton'
-import { Badge } from '@/components/ui/badge'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Progress } from '@/components/ui/progress'
 import { Slider } from '@/components/ui/slider'
 import { ClipboardCopy, Eye, EyeOff, RefreshCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
@@ -138,12 +124,12 @@ const entropyIndex = computed(() => {
   return 3
 })
 
-const currentEntropy = computed(() => ENTROPY[entropyIndex.value])
-const currentTag = computed(() => TAG[entropyIndex.value])
+const currentEntropy = computed<string>(() => ENTROPY[entropyIndex.value] ?? 'LOW')
+const currentTag = computed<string>(() => TAG[entropyIndex.value] ?? 'VULNERABLE')
 
-const entropyProgress = computed(() => {
+const entropyProgress = computed<number>(() => {
   const index = entropyIndex.value
-  return [15, 40, 75, 100][index]
+  return [15, 40, 75, 100][index] ?? 0
 })
 
 async function copyClipboard() {
@@ -210,7 +196,7 @@ onMounted(() => {
   generatePassword()
 })
 
-watch([uppercase, lowercase, numbers, symbols], () => {
+watch([uppercase, lowercase, numbers, symbols, passwordLength], () => {
   generatePassword()
 }, { deep: true })
 </script>

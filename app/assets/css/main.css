@@ -4,7 +4,23 @@
 @custom-variant dark (&:is(.dark *));
 
 body {
-  @apply bg-[#0F0F0F] font-secondary text-white select-none selection:bg-[#00d200] selection:text-black;
+  @apply bg-[#0F0F0F] font-secondary text-white select-none selection:bg-white selection:text-black;
+}
+
+@layer {
+  .red {
+    @apply text-red-500;
+  }
+  .orange {
+    @apply text-orange-500;
+  }
+  .yellow {
+    @apply text-yellow-500;
+  }
+  .green {
+    @apply text-green-500;
+  }
+
 }
 
 @theme {

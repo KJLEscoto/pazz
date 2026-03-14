@@ -19,10 +19,10 @@ const delegatedProps = reactiveOmit(props, "class")
 const progressColor = computed(() => {
   const value = props.modelValue ?? 0
 
-  if (value <= 15) return "bg-white/20"
-  if (value <= 40) return "bg-white/40"
-  if (value <= 75) return "bg-white/60"
-  return "bg-white"
+  if (value <= 15) return "bg-red-500"
+  if (value <= 40) return "bg-orange-500"
+  if (value <= 75) return "bg-yellow-500"
+  return "bg-green-500"
 })
 </script>
 
@@ -32,7 +32,7 @@ const progressColor = computed(() => {
     props.class,
   )
     ">
-    <ProgressIndicator data-slot="progress-indicator" class="h-full w-full flex-1 transition-all" :class="progressColor"
+    <ProgressIndicator data-slot="progress-indicator" class="h-full w-full flex-1 transition-all duration-500" :class="progressColor"
       :style="`transform: translateX(-${100 - (props.modelValue ?? 0)}%);`" />
   </ProgressRoot>
 </template>
