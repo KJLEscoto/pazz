@@ -4,7 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 body {
-  @apply bg-[#0F0F0F] font-secondary text-white select-none selection:bg-white selection:text-black;
+  @apply bg-[#0F0F0F] font-secondary text-white select-none selection:bg-[#e5e5e5] selection:text-black;
 }
 
 @layer {
@@ -20,7 +20,27 @@ body {
   .green {
     @apply text-green-500;
   }
+  .main-bg-color {
+    @apply bg-[#e5e5e5];
+  }
 
+  .custom-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 999px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+  }
+
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
 }
 
 @theme {
@@ -28,9 +48,7 @@ body {
   --font-secondary: "Roboto", "sans-serif";
 }
 
-
 @theme inline {
-
   --radius-sm: calc(var(--radius) - 4px);
 
   --radius-md: calc(var(--radius) - 2px);
@@ -103,7 +121,6 @@ body {
 }
 
 :root {
-
   --radius: 0.625rem;
 
   --background: oklch(1 0 0);
@@ -170,7 +187,6 @@ body {
 }
 
 .dark {
-
   --background: oklch(0.145 0 0);
 
   --foreground: oklch(0.985 0 0);

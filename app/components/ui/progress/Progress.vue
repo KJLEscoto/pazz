@@ -28,7 +28,7 @@ const progressColor = computed(() => {
 
 <template>
   <ProgressRoot data-slot="progress" v-bind="delegatedProps" :class="cn(
-    'bg-accent-foreground relative h-2 w-full overflow-hidden rounded-full',
+    'bg-accent-foreground relative h-3 w-full overflow-hidden rounded-full',
     props.class,
   )
     ">

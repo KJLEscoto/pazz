@@ -19,11 +19,5 @@ const badgeColor = computed(() => {
 </script>
 
 <template>
-  <section class="flex items-center justify-between w-full gap-4">
-    <Badge variant="default" class="text-xs font-bold" :class="badgeColor">{{ currentTag }}</Badge>
-    <div class="flex items-center gap-2 text-muted-foreground">
-      <Skeleton class="size-2 rounded-full bg-green-400" />
-      Encrypted
-    </div>
-  </section>
+    <Badge variant="default" class="text-xs font-bold rounded-sm" :class="badgeColor">{{ currentTag }}</Badge>
 </template>

@@ -4,7 +4,6 @@
 
       <!-- app name -->
       <section class="flex flex-col items-center gap-2">
-        <!-- <Skeleton class="w-25 h-25 rounded-full bg-white/10" /> -->
         <h1 class="font-primary text-5xl font-bold">Pazz</h1>
         <p class="text-xl text-muted-foreground">
           Random Password Generator
@@ -17,8 +16,11 @@
         <!-- password panel -->
         <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-4xl w-full space-y-6">
 
-          <!-- status -->
-          <Status :entropy-progress="entropyProgress" :current-tag="currentTag" />
+          <!-- status and history -->
+          <section class="flex items-center justify-between w-full gap-4">
+            <Status :entropy-progress="entropyProgress" :current-tag="currentTag" />
+            <History />
+          </section>
 
           <!-- generated password -->
           <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center">
@@ -30,7 +32,7 @@
             </p>
           </section>
 
-          <!-- buttons -->
+          <!-- main buttons -->
           <section class="flex items-center justify-center w-full gap-3">
             <button @click="togglePassword" type="button"
               class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer">
@@ -38,7 +40,7 @@
               <Eye v-else class="size-6 pointer-events-none" />
             </button>
             <button @click="generatePassword" type="button"
-              class="bg-white p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
+              class="main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
               <RefreshCcw class="size-6 pointer-events-none text-black mx-auto" />
             </button>
             <button @click="copyClipboard" type="button"
@@ -51,6 +53,7 @@
         <!-- entropy -->
         <Entropy :entropy-progress="entropyProgress" :current-entropy="currentEntropy" />
 
+        <!-- slider -->
         <div class="space-y-3">
           <section class="flex items-end gap-4 justify-between w-full">
             <h2 class="text-sm text-muted-foreground">No. of Characters</h2>
@@ -70,10 +73,10 @@
           </div>
         </div>
 
-        <!-- buttons -->
+        <!-- secondary buttons -->
         <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
           <button @click="generatePassword" type="button"
-            class="bg-white p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
+            class="main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
             <RefreshCcw class="size-6 pointer-events-none" />
             <p>Regenerate New Keys</p>
           </button>
@@ -84,6 +87,7 @@
           </button>
         </div>
 
+        <!-- reset -->
         <div class="w-full flex items-center justify-center">
           <button @click="resetDefault" type="button" class="w-fit cursor-pointer">
             <p class="text-muted-foreground hover:text-white transition duration-150 ease-in">Reset to Default</p>
@@ -101,8 +105,8 @@ import { Slider } from '@/components/ui/slider'
 import { ClipboardCopy, Eye, EyeOff, RefreshCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
-const MAX_PASSWORD_LENGTH = 64
 const MIN_PASSWORD_LENGTH = 4
+const MAX_PASSWORD_LENGTH = 64
 const DEFAULT_PASSWORD = '-'
 const ENTROPY = ['LOW', 'MODERATE', 'SECURE', 'EXTREME'] // low = 0-7, moderate = 8-15, secure = 16-33, extreme = 34+
 const TAG = ['VULNERABLE', 'STANDARD', 'FORTIFIED', 'MILITARY GRADE'] // low = 0-7, standard = 8-15, fortified = 16-33, military grade = 34+
@@ -137,7 +141,7 @@ async function copyClipboard() {
 
   try {
     await navigator.clipboard.writeText(password.value)
-    toast('Password copied!', {
+    toast('Copied to clipboard!', {
       description: password.value,
     })
     // console.log("Password copied to clipboard")

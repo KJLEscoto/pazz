@@ -54,7 +54,7 @@ onUnmounted(() => {
     </div>
 
     <div v-if="booting"
-      class="fixed inset-0 z-[9999] grid place-items-center bg-black/85 backdrop-blur-md h-screen overflow-hidden">
+      class="fixed inset-0 z-9999 grid place-items-center bg-black/85 backdrop-blur-md h-screen overflow-hidden">
       <Loader />
     </div>
   </div>
