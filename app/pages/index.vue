@@ -63,7 +63,7 @@
           <section class="flex items-end gap-4 justify-between w-full">
             <h2 class="text-sm text-muted-foreground">No. of Characters</h2>
             <input type="number" v-model="inputValue" @keydown.enter="commitValue" @blur="commitValue"
-              class="text-xl font-semibold rounded-md bg-[#0a0a0a] border-none outline-none text-center w-fit p-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              class="text-base font-semibold rounded-md bg-[#0a0a0a] border-none outline-none text-center w-fit p-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               :min="MIN_PASSWORD_LENGTH" :max="MAX_PASSWORD_LENGTH" />
           </section>
           <Slider v-model="passwordLength" :max="MAX_PASSWORD_LENGTH" :step="1" :min="MIN_PASSWORD_LENGTH" />
@@ -130,6 +130,7 @@ const password = ref(DEFAULT_PASSWORD)
 const isPending = ref(false)
 
 const { addEntry } = usePasswordHistory()
+const { play } = useSound()
 
 async function copyClipboard() {
   if (!password.value || password.value === DEFAULT_PASSWORD) return
@@ -137,8 +138,10 @@ async function copyClipboard() {
   try {
     await navigator.clipboard.writeText(password.value)
     addEntry(password.value)
-    toast('Copied to clipboard!', { description: password.value })
+    play('/audio/success.mp3', 0.5)
+    toast.success('Copied to clipboard!', { description: password.value })
   } catch {
+    play('/audio/error.mp3', 0.5)
     toast.warning('Failed to copy password!', {
       description: 'Please try copying manually.',
     })

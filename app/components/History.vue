@@ -14,6 +14,8 @@ const isOpen = ref(false)
 const { history, clearHistory } = usePasswordHistory()
 const isPending = ref(false)
 
+const { play } = useSound()
+
 function formatDate(iso: string) {
   const date = new Date(iso)
 
@@ -34,8 +36,10 @@ function formatDate(iso: string) {
 async function copyEntry(pw: string) {
   try {
     await navigator.clipboard.writeText(pw)
-    toast('Copied to clipboard!', { description: pw })
+    play('/audio/success.mp3', 0.5)
+    toast.success('Copied to clipboard!', { description: pw })
   } catch {
+    play('/audio/error.mp3', 0.5)
     toast.warning('Failed to copy password!')
   }
 }
