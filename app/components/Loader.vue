@@ -11,12 +11,12 @@
 .loader::before {
   content: "";
   position: absolute;
-  background-color: rgb(255, 255, 255);
+  background-color: #e5e5e5;
   width: 0%;
   height: 100%;
   border-radius: 2px;
   animation: load 3.5s ease-in-out infinite;
-  box-shadow: rgb(255, 255, 255) 0px 2px 29px 0px;
+  box-shadow: #e5e5e5 0px 2px 29px 0px;
 }
 
 .container {

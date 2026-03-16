@@ -43,10 +43,10 @@ const markerPositions = computed(() => {
     </SliderTrack>
 
     <!-- dynamic markers -->
-    <div v-for="marker in markerPositions" :key="marker.value" class="absolute h-3 w-1 ml-2" :class="marker.color"
+    <div v-for="marker in markerPositions" :key="marker.value" class="absolute rounded-full h-1.5 w-1.5 ml-2" :class="marker.color"
       :style="{ left: marker.left }" />
 
-    <SliderThumb v-for="(_, key) in modelValue" :key="key" data-slot="slider-thumb"
+    <SliderThumb data-slot="slider-thumb"
       class="bg-white border-primary ring-ring/50 block size-5 shrink-0 rounded-full border shadow-sm transition-[color,box-shadow] hover:ring-5 focus-visible:ring-4 focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50" />
   </SliderRoot>
 </template>

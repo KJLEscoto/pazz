@@ -5,9 +5,7 @@
       <!-- app name -->
       <section class="flex flex-col items-center gap-2">
         <h1 class="font-primary text-5xl font-bold">Pazz</h1>
-        <p class="text-xl text-muted-foreground">
-          Random Password Generator
-        </p>
+        <p class="text-xl text-muted-foreground">Random Password Generator</p>
       </section>
 
       <!-- main panel -->
@@ -23,9 +21,15 @@
           </section>
 
           <!-- generated password -->
-          <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center">
-            <p :class="[
-              'wrap-break-word select-text text-2xl transition-all duration-300',
+          <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center min-h-[72px] flex items-center justify-center transition-all ease-in duration-500">
+            <!-- skeleton -->
+            <div v-if="isPending" class="w-full flex flex-col items-center gap-2 animate-pulse">
+              <div class="h-5 rounded-md bg-white/10 w-full" />
+              <div class="h-5 rounded-md bg-white/10 w-2/3" />
+            </div>
+            <!-- password -->
+            <p v-else :class="[
+              'wrap-break-word select-text text-2xl w-full',
               !isPasswordVisible && password !== DEFAULT_PASSWORD ? 'blur-xs select-none!' : 'blur-0'
             ]">
               {{ password }}
@@ -34,17 +38,18 @@
 
           <!-- main buttons -->
           <section class="flex items-center justify-center w-full gap-3">
-            <button @click="togglePassword" type="button"
-              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer">
+            <button @click="togglePassword" type="button" :disabled="isPending"
+              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
               <EyeOff v-if="isPasswordVisible" class="size-6 pointer-events-none" />
               <Eye v-else class="size-6 pointer-events-none" />
             </button>
-            <button @click="generatePassword" type="button"
-              class="main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%]">
-              <RefreshCcw class="size-6 pointer-events-none text-black mx-auto" />
+            <button @click="generatePassword" type="button" :disabled="isPending"
+              class="main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%] disabled:opacity-40 disabled:cursor-not-allowed">
+              <RefreshCcw class="size-6 pointer-events-none text-black mx-auto"
+                :class="isPending ? 'animate-spin direction-reverse' : ''" />
             </button>
-            <button @click="copyClipboard" type="button"
-              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer">
+            <button @click="copyClipboard" type="button" :disabled="isPending"
+              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
               <ClipboardCopy class="size-6 pointer-events-none" />
             </button>
           </section>
@@ -57,7 +62,9 @@
         <div class="space-y-3">
           <section class="flex items-end gap-4 justify-between w-full">
             <h2 class="text-sm text-muted-foreground">No. of Characters</h2>
-            <h1 class="text-2xl font-bold">{{ passwordLength[0] }}</h1>
+            <input type="number" v-model="inputValue" @keydown.enter="commitValue" @blur="commitValue"
+              class="text-xl font-semibold rounded-md bg-[#0a0a0a] border-none outline-none text-center w-fit p-2 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+              :min="MIN_PASSWORD_LENGTH" :max="MAX_PASSWORD_LENGTH" />
           </section>
           <Slider v-model="passwordLength" :max="MAX_PASSWORD_LENGTH" :step="1" :min="MIN_PASSWORD_LENGTH" />
         </div>
@@ -75,13 +82,14 @@
 
         <!-- secondary buttons -->
         <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
-          <button @click="generatePassword" type="button"
-            class="main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
-            <RefreshCcw class="size-6 pointer-events-none" />
+          <button @click="generatePassword" type="button" :disabled="isPending"
+            class="main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+           <RefreshCcw class="size-6 pointer-events-none text-black"
+              :class="isPending ? 'animate-spin direction-reverse' : ''" />
             <p>Regenerate New Keys</p>
           </button>
-          <button @click="copyClipboard" type="button"
-            class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer w-full flex items-center justify-center gap-2">
+          <button @click="copyClipboard" type="button" :disabled="isPending"
+            class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
             <ClipboardCopy class="size-6 pointer-events-none" />
             <p>Copy Password</p>
           </button>
@@ -89,12 +97,12 @@
 
         <!-- reset -->
         <div class="w-full flex items-center justify-center">
-          <button @click="resetDefault" type="button" class="w-fit cursor-pointer">
+          <button @click="resetDefault" type="button" class="w-fit cursor-pointer" :disabled="isPending">
             <p class="text-muted-foreground hover:text-white transition duration-150 ease-in">Reset to Default</p>
           </button>
         </div>
-      </section>
 
+      </section>
     </div>
   </main>
 </template>
@@ -104,12 +112,13 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { Slider } from '@/components/ui/slider'
 import { ClipboardCopy, Eye, EyeOff, RefreshCcw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
+import { useDebounceFn } from '@vueuse/core'
 
 const MIN_PASSWORD_LENGTH = 4
 const MAX_PASSWORD_LENGTH = 64
 const DEFAULT_PASSWORD = '-'
-const ENTROPY = ['LOW', 'MODERATE', 'SECURE', 'EXTREME'] // low = 0-7, moderate = 8-15, secure = 16-33, extreme = 34+
-const TAG = ['VULNERABLE', 'STANDARD', 'FORTIFIED', 'MILITARY GRADE'] // low = 0-7, standard = 8-15, fortified = 16-33, military grade = 34+
+const ENTROPY = ['LOW', 'MODERATE', 'SECURE', 'EXTREME']
+const TAG = ['VULNERABLE', 'STANDARD', 'FORTIFIED', 'MILITARY GRADE']
 
 const isPasswordVisible = ref(true)
 const uppercase = ref(true)
@@ -118,14 +127,47 @@ const numbers = ref(true)
 const symbols = ref(true)
 const passwordLength = ref([MIN_PASSWORD_LENGTH])
 const password = ref(DEFAULT_PASSWORD)
+const isPending = ref(false)
+
+const { addEntry } = usePasswordHistory()
+
+async function copyClipboard() {
+  if (!password.value || password.value === DEFAULT_PASSWORD) return
+
+  try {
+    await navigator.clipboard.writeText(password.value)
+    addEntry(password.value)
+    toast('Copied to clipboard!', { description: password.value })
+  } catch {
+    toast.warning('Failed to copy password!', {
+      description: 'Please try copying manually.',
+    })
+  }
+}
 
 const entropyIndex = computed(() => {
   const length = password.value === DEFAULT_PASSWORD ? 0 : (passwordLength.value[0] ?? MIN_PASSWORD_LENGTH)
-
   if (length <= 7) return 0
   if (length <= 15) return 1
   if (length <= 33) return 2
   return 3
+})
+
+const inputValue = ref(String(MIN_PASSWORD_LENGTH))
+
+function commitValue() {
+  const val = parseInt(inputValue.value)
+  const clamped = isNaN(val)
+    ? passwordLength.value[0]!
+    : Math.min(Math.max(val, MIN_PASSWORD_LENGTH), MAX_PASSWORD_LENGTH)
+
+  passwordLength.value = [clamped]
+  inputValue.value = String(clamped) // reset display to valid value
+}
+
+// keep inputValue in sync when slider moves
+watch(passwordLength, (val) => {
+  inputValue.value = String(val[0])
 })
 
 const currentEntropy = computed<string>(() => ENTROPY[entropyIndex.value] ?? 'LOW')
@@ -136,24 +178,18 @@ const entropyProgress = computed<number>(() => {
   return [15, 40, 75, 100][index] ?? 0
 })
 
-async function copyClipboard() {
-  if (!password.value || password.value === DEFAULT_PASSWORD) return
 
-  try {
-    await navigator.clipboard.writeText(password.value)
-    toast('Copied to clipboard!', {
-      description: password.value,
-    })
-    // console.log("Password copied to clipboard")
-  } catch (error) {
-    toast.warning('Failed to copy password!', {
-      description: 'Please try copying manually.',
-    })
-    // console.error("Failed to copy password:", error)
-  }
-}
+let generationId = 0
 
-function generatePassword() {
+async function generatePassword() {
+  const id = ++generationId
+  isPending.value = true
+
+  await new Promise(resolve => setTimeout(resolve, 600))
+
+  // discard if a newer generation was triggered
+  if (id !== generationId) return
+
   const length = passwordLength.value[0] ?? MIN_PASSWORD_LENGTH
 
   const upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -162,7 +198,6 @@ function generatePassword() {
   const syms = "!@#$%^&*()-+"
 
   let charset = ""
-
   if (uppercase.value) charset += upper
   if (lowercase.value) charset += lower
   if (numbers.value) charset += nums
@@ -170,17 +205,18 @@ function generatePassword() {
 
   if (!charset) {
     password.value = DEFAULT_PASSWORD
+    isPending.value = false
     return
   }
 
   let generated = ""
-
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * charset.length)
     generated += charset[randomIndex]
   }
 
   password.value = generated
+  isPending.value = false
 }
 
 function togglePassword() {
@@ -200,7 +236,9 @@ onMounted(() => {
   generatePassword()
 })
 
+const debouncedGenerate = useDebounceFn(generatePassword, 400)
+
 watch([uppercase, lowercase, numbers, symbols, passwordLength], () => {
-  generatePassword()
+  debouncedGenerate()
 }, { deep: true })
 </script>
