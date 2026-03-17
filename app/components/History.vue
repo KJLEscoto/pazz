@@ -63,7 +63,7 @@ watch(isOpen, async (val) => {
 <template>
   <AlertDialog :open="isOpen" @update:open="isOpen = $event">
     <AlertDialogTrigger @click="isOpen = true">
-      <button type="button" class="bg-accent-foreground p-2 border border-white/10 rounded-sm cursor-pointer">
+      <button type="button" class="btn-hover bg-accent-foreground p-2 border border-white/10 rounded-sm cursor-pointer">
         <History class="size-4 pointer-events-none" />
       </button>
     </AlertDialogTrigger>
@@ -80,12 +80,12 @@ watch(isOpen, async (val) => {
           </section>
           <section class="flex items-center gap-2">
             <button v-if="!isPending && history.length > 0" @click="confirmClearHistory" type="button"
-              class="bg-red-700 py-2 px-4 border border-white/10 rounded-sm cursor-pointer flex items-center gap-1">
+              class="btn-hover bg-red-700 py-2 px-4 border border-white/10 rounded-sm cursor-pointer flex items-center gap-1">
               <BrushCleaning class="size-4 pointer-events-none" />
               <p class="text-sm font-normal">Clear All</p>
             </button>
             <button type="button" @click="isOpen = false"
-              class="bg-accent-foreground p-2.5 border border-white/10 rounded-sm cursor-pointer">
+              class="btn-hover bg-accent-foreground p-2.5 border border-white/10 rounded-sm cursor-pointer">
               <X class="size-4 pointer-events-none" />
             </button>
           </section>
@@ -121,7 +121,7 @@ watch(isOpen, async (val) => {
                 <p class="text-xs text-muted-foreground">{{ formatDate(entry.copiedAt) }}</p>
               </div>
               <button @click="copyEntry(entry.password)" type="button"
-                class="shrink-0 bg-accent-foreground p-2 border border-white/10 rounded-sm cursor-pointer">
+                class="btn-hover shrink-0 bg-accent-foreground p-3 border border-white/10 rounded-sm cursor-pointer">
                 <ClipboardCopy class="size-4 pointer-events-none" />
               </button>
             </li>

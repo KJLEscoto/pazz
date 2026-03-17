@@ -41,7 +41,8 @@ onUnmounted(() => {
           style: {
             background: '#18181b',
             color: '#fafafa',
-            border: '1px solid #27272a'
+            border: '1px solid #27272a',
+            fontFamily: 'JetBrains Mono, monospace',
           },
           classes: {
             description: '!text-zinc-300',

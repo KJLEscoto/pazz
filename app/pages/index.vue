@@ -29,7 +29,7 @@
             </div>
             <!-- password -->
             <p v-else :class="[
-              'wrap-break-word select-text text-2xl w-full',
+              'wrap-break-word select-text text-2xl font-mono w-full',
               !isPasswordVisible && password !== DEFAULT_PASSWORD ? 'blur-xs select-none!' : 'blur-0'
             ]">
               {{ password }}
@@ -39,17 +39,17 @@
           <!-- main buttons -->
           <section class="flex items-center justify-center w-full gap-3">
             <button @click="togglePassword" type="button" :disabled="isPending"
-              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+              class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
               <EyeOff v-if="isPasswordVisible" class="size-6 pointer-events-none" />
               <Eye v-else class="size-6 pointer-events-none" />
             </button>
             <button @click="generatePassword" type="button" :disabled="isPending"
-              class="main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%] disabled:opacity-40 disabled:cursor-not-allowed">
+              class="btn-hover main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%] disabled:opacity-40 disabled:cursor-not-allowed">
               <RefreshCcw class="size-6 pointer-events-none text-black mx-auto"
                 :class="isPending ? 'animate-spin direction-reverse' : ''" />
             </button>
             <button @click="copyClipboard" type="button" :disabled="isPending"
-              class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
+              class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
               <ClipboardCopy class="size-6 pointer-events-none" />
             </button>
           </section>
@@ -83,13 +83,13 @@
         <!-- secondary buttons -->
         <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
           <button @click="generatePassword" type="button" :disabled="isPending"
-            class="main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+            class="btn-hover main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
            <RefreshCcw class="size-6 pointer-events-none text-black"
               :class="isPending ? 'animate-spin direction-reverse' : ''" />
             <p>Regenerate New Keys</p>
           </button>
           <button @click="copyClipboard" type="button" :disabled="isPending"
-            class="bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
+            class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
             <ClipboardCopy class="size-6 pointer-events-none" />
             <p>Copy Password</p>
           </button>

@@ -24,6 +24,10 @@ body {
     @apply bg-[#e5e5e5];
   }
 
+  .btn-hover {
+    @apply hover:scale-105 active:scale-95 transition-transform duration-200 ease-in-out;
+  }
+
   .custom-scroll::-webkit-scrollbar {
     width: 6px;
   }
