@@ -19,7 +19,7 @@ const entropyColor = computed(() => {
 <template>
   <div class="space-y-3">
     <Progress :model-value="entropyProgress" />
-    <h2 class="text-sm font-bold" :class="entropyColor">
+    <h2 class="md:text-sm text-xs font-bold" :class="entropyColor">
       {{ currentEntropy }}
     </h2>
   </div>

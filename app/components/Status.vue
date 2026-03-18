@@ -19,5 +19,5 @@ const badgeColor = computed(() => {
 </script>
 
 <template>
-    <Badge variant="default" class="text-xs font-bold rounded-sm" :class="badgeColor">{{ currentTag }}</Badge>
+    <Badge variant="default" class="text-xs font-bold rounded-lg py-2.5" :class="badgeColor">{{ currentTag }}</Badge>
 </template>

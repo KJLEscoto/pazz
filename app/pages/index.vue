@@ -1,18 +1,18 @@
 <template>
   <main class="h-full min-h-screen flex items-center justify-center w-full px-4 py-10">
-    <div class="space-y-8 w-full">
+    <div class="md:space-y-8 space-y-4 w-full">
 
       <!-- app name -->
       <section class="flex flex-col items-center gap-2">
-        <h1 class="font-primary text-5xl font-bold">Pazz</h1>
-        <p class="text-xl text-muted-foreground">Random Password Generator</p>
+        <h1 class="font-primary md:text-5xl text-4xl font-bold">Pazz</h1>
+        <p class="md:text-xl text-base text-muted-foreground">Random Password Generator</p>
       </section>
 
       <!-- main panel -->
-      <section class="bg-[#151516] border border-white/5 p-8 rounded-[3rem] max-w-2xl mx-auto w-full space-y-6">
+      <section class="bg-[#151516] border border-white/5 md:p-8 p-5 rounded-[3rem] max-w-2xl mx-auto w-full space-y-6">
 
         <!-- password panel -->
-        <div class="bg-[#0a0a0a] border border-white/10 p-8 rounded-4xl w-full space-y-6">
+        <div class="bg-[#0a0a0a] border border-white/10 md:p-8 p-6 rounded-4xl w-full space-y-6">
 
           <!-- status and history -->
           <section class="flex items-center justify-between w-full gap-4">
@@ -21,7 +21,7 @@
           </section>
 
           <!-- generated password -->
-          <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center min-h-[72px] flex items-center justify-center transition-all ease-in duration-500">
+          <section class="p-6 bg-[#0d0d0d] rounded-lg w-full text-center min-h-18 flex items-center justify-center transition-all ease-in duration-500">
             <!-- skeleton -->
             <div v-if="isPending" class="w-full flex flex-col items-center gap-2 animate-pulse">
               <div class="h-5 rounded-md bg-white/10 w-full" />
@@ -29,7 +29,7 @@
             </div>
             <!-- password -->
             <p v-else :class="[
-              'wrap-break-word select-text text-2xl font-mono w-full',
+              'wrap-break-word select-text md:text-2xl text-lg font-mono w-full',
               !isPasswordVisible && password !== DEFAULT_PASSWORD ? 'blur-xs select-none!' : 'blur-0'
             ]">
               {{ password }}
@@ -40,17 +40,17 @@
           <section class="flex items-center justify-center w-full gap-3">
             <button @click="togglePassword" type="button" :disabled="isPending"
               class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
-              <EyeOff v-if="isPasswordVisible" class="size-6 pointer-events-none" />
-              <Eye v-else class="size-6 pointer-events-none" />
+              <EyeOff v-if="isPasswordVisible" class="md:size-6 size-5 pointer-events-none" />
+              <Eye v-else class="md:size-6 size-5 pointer-events-none" />
             </button>
             <button @click="generatePassword" type="button" :disabled="isPending"
               class="btn-hover main-bg-color p-4 border border-white/10 rounded-xl cursor-pointer min-w-[30%] disabled:opacity-40 disabled:cursor-not-allowed">
-              <RefreshCcw class="size-6 pointer-events-none text-black mx-auto"
+              <RefreshCcw class="md:size-6 size-5 pointer-events-none text-black mx-auto"
                 :class="isPending ? 'animate-spin direction-reverse' : ''" />
             </button>
             <button @click="copyClipboard" type="button" :disabled="isPending"
               class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed">
-              <ClipboardCopy class="size-6 pointer-events-none" />
+              <ClipboardCopy class="md:size-6 size-5 pointer-events-none" />
             </button>
           </section>
         </div>
@@ -84,14 +84,14 @@
         <div class="flex md:flex-row flex-col items-center justify-center w-full gap-3">
           <button @click="generatePassword" type="button" :disabled="isPending"
             class="btn-hover main-bg-color p-4 border border-white/10 text-black rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
-           <RefreshCcw class="size-6 pointer-events-none text-black"
+           <RefreshCcw class="md:size-6 size-5 pointer-events-none text-black"
               :class="isPending ? 'animate-spin direction-reverse' : ''" />
-            <p>Regenerate New Keys</p>
+            <p class="md:text-lg text-base">Regenerate New Keys</p>
           </button>
           <button @click="copyClipboard" type="button" :disabled="isPending"
             class="btn-hover bg-accent-foreground p-4 border border-white/10 rounded-xl cursor-pointer w-full flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed">
-            <ClipboardCopy class="size-6 pointer-events-none" />
-            <p>Copy Password</p>
+            <ClipboardCopy class="md:size-6 size-5 pointer-events-none" />
+            <p class="md:text-lg text-base">Copy Password</p>
           </button>
         </div>
 

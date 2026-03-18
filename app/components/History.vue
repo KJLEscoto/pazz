@@ -63,15 +63,15 @@ watch(isOpen, async (val) => {
 <template>
   <AlertDialog :open="isOpen" @update:open="isOpen = $event">
     <AlertDialogTrigger @click="isOpen = true">
-      <button type="button" class="btn-hover bg-accent-foreground p-2 border border-white/10 rounded-sm cursor-pointer">
+      <button type="button" class="btn-hover bg-accent-foreground p-2.5 border border-white/10 rounded-lg cursor-pointer">
         <History class="size-4 pointer-events-none" />
       </button>
     </AlertDialogTrigger>
     <AlertDialogContent @interact-outside="isOpen = false" @escape-key-down="isOpen = false">
       <AlertDialogHeader>
         <AlertDialogTitle
-          class="w-full flex items-end justify-between gap-4 sticky top-0 bg-[#18181b] border-b border-white/5 pt-6 pb-4">
-          <section>
+          class="w-full flex md:items-end items-center justify-between gap-4 sticky top-0 bg-[#18181b] border-b border-white/5 pt-6 pb-4">
+          <section class="md:text-base text-sm">
             Recently Copied
             <span v-if="isPending" class="text-sm text-muted-foreground">
               (0/0)
@@ -80,12 +80,12 @@ watch(isOpen, async (val) => {
           </section>
           <section class="flex items-center gap-2">
             <button v-if="!isPending && history.length > 0" @click="confirmClearHistory" type="button"
-              class="btn-hover bg-red-700 py-2 px-4 border border-white/10 rounded-sm cursor-pointer flex items-center gap-1">
+              class="btn-hover bg-red-700 py-2 md:px-4 px-2 md:border md:border-white/10 rounded-sm cursor-pointer flex items-center gap-1">
               <BrushCleaning class="size-4 pointer-events-none" />
-              <p class="text-sm font-normal">Clear All</p>
+              <p class="md:text-sm md:block hidden font-normal text-nowrap">Clear All</p>
             </button>
             <button type="button" @click="isOpen = false"
-              class="btn-hover bg-accent-foreground p-2.5 border border-white/10 rounded-sm cursor-pointer">
+              class="btn-hover bg-accent-foreground md:p-2.5 p-2 border border-white/10 rounded-sm cursor-pointer">
               <X class="size-4 pointer-events-none" />
             </button>
           </section>
@@ -107,9 +107,12 @@ watch(isOpen, async (val) => {
 
           <!-- empty -->
           <div v-else-if="history.length === 0"
-            class="flex flex-col items-center justify-center py-10 gap-2 text-muted-foreground">
-            <ClipboardCopy class="size-8 opacity-40" />
-            <p class="text-sm">No history yet. Try copying a password.</p>
+            class="flex flex-col items-center justify-center py-10 gap-3 text-muted-foreground">
+            <ClipboardCopy class="size-8 opacity-60" />
+            <div class="space-y-1 text-center">
+              <p class="md:text-xl text-lg text-white">No history yet.</p>
+              <p class="md:text-lg text-base">Try copying a password.</p>
+            </div>
           </div>
 
           <!-- list -->

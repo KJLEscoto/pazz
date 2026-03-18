@@ -22,7 +22,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
 <template>
   <label
     class="group flex items-center justify-between rounded-xl bg-[#0a0a0a] px-5 py-5 text-muted-foreground transition-all duration-200 hover:cursor-pointer">
-    <span class="text-xs font-normal md:text-sm">
+    <span class="md:text-base font-normal text-sm">
       {{ label }}
     </span>
 
