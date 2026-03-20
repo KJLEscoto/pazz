@@ -4,31 +4,20 @@
   <br />
   <br />
 
-  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-   
-  [![Nuxt 4](https://img.shields.io/badge/Nuxt-002E3B?logo=nuxt&logoColor=#00DC82)](https://nuxt.com/)
-
-  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
-
-  [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-
-  [![Shadcn-Vue](https://img.shields.io/badge/shadcn%2Fui-ffffff?logo=shadcnui&logoColor=41b883)](https://www.shadcn-vue.com/)    
-  
-  </div>
+  <table><tr>
+    <td><a href="https://nuxt.com/"><img src="https://img.shields.io/badge/Nuxt%204-002E3B?logo=nuxt&logoColor=#00DC82" alt="Nuxt 4"></a></td>
+    <td><a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff" alt="TypeScript"></a></td>
+    <td><a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind%20CSS%204-%2338B2AC.svg?logo=tailwind-css&logoColor=white" alt="Tailwind CSS 4"></a></td>
+    <td><a href="https://www.shadcn-vue.com/"><img src="https://img.shields.io/badge/Shadcn--Vue-ffffff?logo=shadcnui&logoColor=41b883" alt="Shadcn-Vue"></a></td>
+  </tr></table>
     
-  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-  
-  [![ChatGPT](https://custom-icon-badges.demolab.com/badge/ChatGPT-74aa9c?logo=openai&logoColor=white)](https://chatgpt.com/)
-    
-  [![Netlify](https://img.shields.io/badge/Netlify-%23000000.svg?logo=netlify&logoColor=#00C7B7)](https://app.netlify.com/)
-
-  [![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)](https://figma.com/)
-
-  [![Lucide](https://img.shields.io/badge/Lucide-ff7070?logo=lucide&logoColor=white)](https://lucide.dev/)
-
-  [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](https://git-scm.com/)
-  
-  </div>
+  <table><tr>
+    <td><a href="https://chatgpt.com/"><img src="https://custom-icon-badges.demolab.com/badge/ChatGPT-74aa9c?logo=openai&logoColor=white" alt="ChatGPT"></a></td>
+    <td><a href="https://app.netlify.com/"><img src="https://img.shields.io/badge/Netlify-%23000000.svg?logo=netlify&logoColor=%2300C7B7" alt="Netlify"></a></td>
+    <td><a href="https://figma.com/"><img src="https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white" alt="Figma"></a></td>
+    <td><a href="https://lucide.dev/"><img src="https://img.shields.io/badge/Lucide-ff7070?logo=lucide&logoColor=white" alt="Lucide"></a></td>
+    <td><a href="https://git-scm.com/"><img src="https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff" alt="Git"></a></td>
+  </tr></table>
 
   <h3 align="center">Pazz: A lightweight random password generator that creates strong, customizable passwords in seconds—helping you stay secure with less effort.</h3>
 
@@ -101,18 +90,13 @@ This mini project was designed & developed by:
 ## ❔ Where to find me?
 You can visit and send a message to my following socials:
 
-<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">  
-  
-  [![KinWebb](https://img.shields.io/badge/KinWebb-ffffff?logo=codecrafters&logoColor=black)](https://kinwebb.netlify.app/)
-  
-  [![Gmail](https://img.shields.io/badge/Gmail-D14836?logo=gmail&logoColor=white)](mailto:kin.webb.1024@gmail.com)
-
-  [![Dribbble](https://img.shields.io/badge/Dribbble-EA4C89?logo=dribbble&logoColor=white)](https://dribbble.com/kinwebb)
-
-  [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white)](https://www.facebook.com/kentoy.newt)
-  
-  [![LinkedIn](https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff)](https://www.instagram.com/_itskjle/)
-</div>
+<table><tr>
+  <td><a href="https://kinwebb.netlify.app/"><img src="https://img.shields.io/badge/KinWebb-ffffff?logo=codecrafters&logoColor=black" alt="KinWebb"></a></td>
+  <td><a href="mailto:kin.webb.1024@gmail.com"><img src="https://img.shields.io/badge/Gmail-D14836?logo=gmail&logoColor=white" alt="Gmail"></a></td>
+  <td><a href="https://dribbble.com/kinwebb"><img src="https://img.shields.io/badge/Dribbble-EA4C89?logo=dribbble&logoColor=white" alt="Dribbble"></a></td>
+  <td><a href="https://www.facebook.com/kentoy.newt"><img src="https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white" alt="Facebook"></a></td>
+  <td><a href="https://www.instagram.com/_itskjle/"><img src="https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff" alt="LinkedIn"></a></td>
+</tr></table>
 
 ## ©️ Copyright
 Designed and developed by KinWebb. © 2026 Kent Joemar Escoto 💻
