@@ -4,29 +4,29 @@
   <br />
   <br />
 
-  <div>
+  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
    
-  [![Nuxt](https://img.shields.io/badge/Nuxt-002E3B?logo=nuxt&logoColor=#00DC82)](#)
+  [![Nuxt 4](https://img.shields.io/badge/Nuxt-002E3B?logo=nuxt&logoColor=#00DC82)](https://nuxt.com/)
 
-  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](#)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
 
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](#)
+  [![Tailwind CSS 4](https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-  [![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000?logo=shadcnui&logoColor=fff)](#)    
+  [![Shadcn-Vue](https://img.shields.io/badge/shadcn%2Fui-ffffff?logo=shadcnui&logoColor=41b883)](https://www.shadcn-vue.com/)    
   
   </div>
     
-  <div>
+  <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
   
-  [![ChatGPT](https://custom-icon-badges.demolab.com/badge/ChatGPT-74aa9c?logo=openai&logoColor=white)](#)
+  [![ChatGPT](https://custom-icon-badges.demolab.com/badge/ChatGPT-74aa9c?logo=openai&logoColor=white)](https://chatgpt.com/)
     
-  [![Netlify](https://img.shields.io/badge/Netlify-%23000000.svg?logo=netlify&logoColor=#00C7B7)](#)
+  [![Netlify](https://img.shields.io/badge/Netlify-%23000000.svg?logo=netlify&logoColor=#00C7B7)](https://app.netlify.com/)
 
-  [![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)](#)
+  [![Figma](https://img.shields.io/badge/Figma-F24E1E?logo=figma&logoColor=white)](https://figma.com/)
 
-  [![Lucide](https://img.shields.io/badge/Lucide-black?logo=git&logoColor=ff7070)](#)
+  [![Lucide](https://img.shields.io/badge/Lucide-ff7070?logo=lucide&logoColor=white)](https://lucide.dev/)
 
-  [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](#)
+  [![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=fff)](https://git-scm.com/)
   
   </div>
 
@@ -101,7 +101,7 @@ This mini project was designed & developed by:
 ## ❔ Where to find me?
 You can visit and send a message to my following socials:
 
-<div>  
+<div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">  
   
   [![KinWebb](https://img.shields.io/badge/KinWebb-ffffff?logo=codecrafters&logoColor=black)](https://kinwebb.netlify.app/)
   
